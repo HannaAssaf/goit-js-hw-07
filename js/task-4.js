@@ -1,53 +1,21 @@
-`use strict`;
+const loginForm = document.querySelector('.login-form');
 
-const getTotalBalanceByGender = (users, gender) =>
-users
-.filter(user => user.gender===gender)
-.reduce((sumBalance, user) => sumBalance + user.balance, 0);
+loginForm.addEventListener('submit', event => {
+  event.preventDefault();
 
+  const { email, password } = loginForm.elements;
+  const emailValue = email.value.trim();
+  const passwordValue = password.value.trim();
 
+  if (emailValue === '' || passwordValue === '') {
+    alert('All form fields must be filled in');
+  }
 
+  const data = {
+    email: emailValue,
+    password: passwordValue,
+  };
 
-
-
-const totalUsers = [
-  {
-  name: "Moore Hensley",
-  gender: "male",
-  balance: 2811
-},
-{
-  name: "Sharlene Bush",
-  gender: "female",
-  balance: 3821
-},
-{
-  name: "Ross Vazquez",
-  gender: "male",
-  balance: 3793
-},
-{
-  name: "Elma Head",
-  gender: "female",
-  balance: 2278
-},
-{
-  name: "Carey Barr",
-  gender: "male",
-  balance: 3951
-},
-{
-  name: "Blackburn Dotson",
-  gender: "male",
-  balance: 1498
-},
-{
-  name: "Sheree Anthony",
-  gender: "female",
-  balance: 2764
-}
-];
-
-console.log(getTotalBalanceByGender(totalUsers, "male")); // 12053
-
-console.log(getTotalBalanceByGender(totalUsers, "female")); // 8863
+  console.log(data);
+  loginForm.reset();
+});
